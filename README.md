@@ -3,6 +3,18 @@
 ## Challenge 1: 
 Read through the rest of the assignment, decide which technologies to use and explain why you chose what you chose. As a reminder we at Paytm are dealing with millions of concurrent users, just sayin’ :)
 
+### Architecture:
+Client-Server because of the REST constraint. Plus, more modular and easier to test.
+
+#### Server:
+Express server providing RESTful API + Redis for caching.
+Since we're expecting millions of concurrent users, so the server application has to be efficient in handling
+concurrent tasks and idle connections. Nodejs enables non-blocking IO using the event loop, s
+
+Nginx for caching and load-balancing
+
+#### Client:
+
 ## Challenge 2: 
 Create a deployable “Hello World” Server exposing simple REST “Hello World” API. It is going to be a base for your application for this assignment.
 
@@ -16,7 +28,8 @@ User will insert text and click the button `Search` and your application will se
 
 ## Challenge 4:
 Make your application secure and personalized by making people to have to sign-up / login. Bonus points, if users will be able to reset their passwords.
-Challenge 5:
+
+## Challenge 5:
 Make your application persistent. Whatever functionality your application has, after restart, make it possible to view a history of user activity or anything else you deem necessary.
 
 ## Challenge 6:
