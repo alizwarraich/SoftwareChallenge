@@ -5,9 +5,10 @@ var ROOT = require('../config').ROOT;
 /* GET home page. */
 router.get('/', function(req, res) {
   res.send({
-    title: "It's Summer So The Weather Is Supposed To Be Nice",
+    title: "",
     resources: [
-      ROOT + '/weather',
+      ROOT + '/tweets',
+      ROOT + '/hello',
     ]
   });
 });
