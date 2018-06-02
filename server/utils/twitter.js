@@ -34,7 +34,7 @@ function _search(token, searchString) {
     });
 }
 
-var twitter = function() {
+const twitter = () => {
   var bearer_token = null;
   return {
     search: function (searchString) {
@@ -44,9 +44,7 @@ var twitter = function() {
             bearer_token = JSON.parse(response).access_token;
             return _search(bearer_token, searchString);
           })
-          .catch(function(err) {
-            throw Error(err);
-          });
+          .catch(function(err) {});
       }
 
       return _search(bearer_token, searchString);

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "mocha --watch ./*/*.spec.js"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -15,5 +16,12 @@
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "bluebird": "^3.5.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nock": "^9.3.0",
+    "sinon": "^5.0.10"
   }
 }
