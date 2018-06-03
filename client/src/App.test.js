@@ -8,12 +8,6 @@ import Header from './components/Header';
 
 
 describe('(Component) App', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
-
   it('contains one Header and one Body', () => {
     const app = shallow(<App/>);
     expect(app.find(Body).length).to.equal(1);

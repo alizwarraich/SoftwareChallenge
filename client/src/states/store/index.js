@@ -1,3 +1,3 @@
-import createStore from './createStore';
+import store from './store';
 
-export default createStore();
+export default store;

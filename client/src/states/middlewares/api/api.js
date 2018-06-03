@@ -9,7 +9,7 @@ export const createNormalAction = (type, data, errors) => {
   };
 };
 
-export default () => (action) => (next) => {
+export default () => (next) => (action) => {
   if (action.type !== API_CALL) {
     return next(action);
   }
@@ -34,7 +34,12 @@ export default () => (action) => (next) => {
 
   return apiClient(endpoint, config)
     .then(response => {
-      next(createNormalAction(successActionType, response.data.data, []));
+
+      console.log('@@@@@@@@@@@@@@@@@');
+      console.log(response);
+      console.log('@@@@@@@@@@@@@@@@@');
+
+      next(createNormalAction(successActionType, response.data, []));
     })
     .catch(response => {
       if (response.data && response.data.errors) {

@@ -16,7 +16,7 @@ const tweets = (state = initState, action) => {
       };
     case SEARCH_TWEETS_SUCCESS:
       return {
-        data: [...action.data],
+        data: [...action.data.statuses],
         errors: [],
         isLoading: false,
       };
