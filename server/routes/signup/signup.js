@@ -31,7 +31,7 @@ var signup = function(req, res) {
     })
     .then((user) => {
       user.save();
-      res.status(201).send(user).end();
+      res.status(201).send({}).end();
     })
     .catch((error) => {
       res.status(400).send(error).end();
