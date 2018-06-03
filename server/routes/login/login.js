@@ -1,9 +1,9 @@
-var bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
-var _ = require('lodash');
-var User = require('../../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const _ = require('lodash');
+const User = require('../../models/User');
 
-var login = function(req, res) {
+const login = (req, res) => {
   if (!req.body || _.isEmpty(req.body)) {
     return res.status(400).send({
       error: 'body cannot be empty'
