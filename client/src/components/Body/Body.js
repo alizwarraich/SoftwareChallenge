@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './styles';
+import Tweet from '../Tweet';
+import Loading from '../Loading';
 
 class Body extends React.Component {
 
@@ -15,7 +17,7 @@ class Body extends React.Component {
   }
 
   render() {
-    const {tweets} = this.props;
+    const {tweets, isLoading} = this.props;
 
     return (
       <div style={styles.layout}>
@@ -41,14 +43,11 @@ class Body extends React.Component {
           </form>
         </div>
         <div style={styles.resultLayout}>
-          {
-            tweets.map((tweet, i) => (
-              <div key={i} style={styles.card} className='card'>
-                <span>{tweet.twitText}</span>
-                <span>{tweet.poster}</span>
-              </div>
+          {(
+            !isLoading && tweets.map((tweet, i) => (
+              <Tweet key={`tweet-${i}`} tweet={tweet}/>
             ))
-          }
+          ) || isLoading && <Loading/>}
         </div>
       </div>
     );

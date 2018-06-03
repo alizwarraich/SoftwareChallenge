@@ -2,19 +2,18 @@ import {connect} from 'react-redux';
 import {SearchTweets} from '../../states/actions/tweets';
 
 export const mapStateToProps = (state) => {
-  const {tweets: {data}} = state;
+  const {tweets: {data, isLoading, errors}} = state;
 
   return {
     tweets: data,
+    isLoading,
+    errors,
   };
 };
 
 export const mapDispatchToProps = (dispatch) => {
   return {
     searchTweets: (searchString) => {
-      console.log('$$$$$$$$$$$$$444');
-      console.log(searchString);
-      console.log('$$$$$$$$$$$$$444');
       dispatch(SearchTweets(searchString));
     },
   };
