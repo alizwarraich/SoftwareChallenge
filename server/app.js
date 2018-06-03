@@ -21,7 +21,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost:27017/covfefe');
-mongoose.set('debug', true);
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));

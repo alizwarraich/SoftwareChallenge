@@ -1,10 +1,11 @@
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 var User = require('../../models/User');
 
 var signup = function(req, res) {
   if (!req.body || _.isEmpty(req.body)) {
-    return res.send({
+    return res.status(400).send({
       error: 'body cannot be empty'
     });
   }
@@ -12,13 +13,13 @@ var signup = function(req, res) {
   const {email, password, confirmPassword} = req.body;
 
   if (password !== confirmPassword) {
-    return res.send({
+    return res.status(400).send({
       error: 'password confirmation not match'
     });
   }
 
   if (password.length < 5) {
-    return res.send({
+    return res.status(400).send({
       error: 'password too short'
     });
   }
@@ -32,7 +33,9 @@ var signup = function(req, res) {
     })
     .then(() => {
       var saltRounds = 13;
-      var hashedPassword = bcrypt.hashSync(password, saltRounds);
+      return bcrypt.hashSync(password, saltRounds);
+    })
+    .then((hashedPassword) => {
       const user = new User({email, password: hashedPassword});
 
       return new Promise((resolve, reject) => {
@@ -46,7 +49,20 @@ var signup = function(req, res) {
     })
     .then((user) => {
       user.save();
-      res.status(201).send(user).end();
+
+      const options = {
+        expiresIn: 15 * 60 * 1000 // 15 minutes
+      };
+
+      const token = jwt.sign({
+        email: user.email,
+        password: new String(user.password),
+      }, 'secret', options);
+
+      return Promise.resolve({token});
+    })
+    .then((response) => {
+      res.status(201).send(response).end();
     })
     .catch((error) => {
       res.status(400).send(error).end();
