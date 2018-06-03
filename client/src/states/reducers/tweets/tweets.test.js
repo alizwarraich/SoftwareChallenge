@@ -1,4 +1,4 @@
-import {SEARCH_TWEETS, SearchTweets} from '../../actions/tweets';
+import {SEARCH_TWEETS, SEARCH_TWEETS_ERROR, SEARCH_TWEETS_SUCCESS, SearchTweets} from '../../actions/tweets';
 import tweets, {initState} from './tweets';
 import {expect} from 'chai';
 
@@ -13,24 +13,81 @@ describe('(reducer) tweets', () => {
     expect(newState).to.deep.equal(initState);
   });
 
-  describe('on SearchTweet action', () => {
-    let action, searchString, state;
+  describe('on `SEARCH_TWEETS` action', () => {
+    let action, state;
+
     beforeEach(() => {
-      state = {
-        isLoading: false,
-        data: [],
-        errors: [],
-      };
+      state = {isLoading: false, data: ['someOldData'], errors: []};
       action = {type: SEARCH_TWEETS, searchString: 'searchString'};
     });
 
-    it('should set isLoading to `true` and errors to empty list', () => {
+    it('should set isLoading to `true`', () => {
       const newState = tweets(state, action);
-
       expect(newState.isLoading).to.be.true;
+    });
+
+    it('should set errors to empty list', () => {
+      const newState = tweets(state, action);
+      expect(newState.errors).to.be.an('array').that.is.empty;
+    });
+
+    it('should set data same as old data', () => {
+      const newState = tweets(state, action);
+      expect(newState.data).to.deep.equal(state.data);
+    });
+  });
+
+  describe('on `SEARCH_TWEETS_SUCCESS` action', () => {
+    let action, state;
+
+    beforeEach(() => {
+      state = {isLoading: true, data: ['someOldData'], errors: []};
+      action = {type: SEARCH_TWEETS_SUCCESS, data: ['someNewData']};
+    });
+
+    it('should set isLoading to `false`', () => {
+      const newState = tweets(state, action);
+      expect(newState.isLoading).to.be.false;
+    });
+
+    it('should set errors to empty list', () => {
+      const newState = tweets(state, action);
+      expect(newState.errors).to.be.an('array').that.is.empty;
+    });
+
+    it('should set data to be same as data from action', () => {
+      const newState = tweets(state, action);
+      expect(newState.data)
+        .to.be.an('array')
+        .that.is.deep.equal(action.data);
+    });
+  });
+
+  describe('on `SEARCH_TWEETS_ERROR` action', () => {
+    let action, state;
+
+    beforeEach(() => {
+      state = {isLoading: true, data: ['someOldData'], errors: []};
+      action = {type: SEARCH_TWEETS_ERROR, data: ['someNewData'], errors: ['someError']};
+    });
+
+    it('should set isLoading to `false`', () => {
+      const newState = tweets(state, action);
+      expect(newState.isLoading).to.be.false;
+    });
+
+    it('should set errors to empty list', () => {
+      const newState = tweets(state, action);
       expect(newState.errors)
         .to.be.an('array')
-        .that.is.empty;
+        .that.is.deep.equal(action.errors);
+    });
+
+    it('should set data to be same as old data', () => {
+      const newState = tweets(state, action);
+      expect(newState.data)
+        .to.be.an('array')
+        .that.is.deep.equal(state.data);
     });
   });
 });
