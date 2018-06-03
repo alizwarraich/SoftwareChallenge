@@ -3,6 +3,7 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('./middlewares/cors');
 
 var index = require('./routes/index');
 var hello = require('./routes/hello');
@@ -11,11 +12,7 @@ var tweets = require('./routes/tweets');
 var app = express();
 
 app.use(logger('dev'));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
