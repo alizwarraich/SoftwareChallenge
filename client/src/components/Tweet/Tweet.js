@@ -5,7 +5,7 @@ const Tweet = ({tweet}) => {
   return (
     <div style={styles.card} className='card'>
       <span>{tweet.user.name} @{tweet.user.screen_name}</span><br/>
-      <span>{tweet.text} covfefe</span>
+      <span>{tweet.text}</span>
     </div>
   );
 };

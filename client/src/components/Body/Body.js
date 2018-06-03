@@ -23,13 +23,13 @@ class Body extends React.Component {
       <div style={styles.layout}>
         <div style={styles.formLayout}>
           <form onSubmit={this.handleSubmit}>
-            <p>Search tweets</p>
+            <p>Tweet covfefier</p>
             <div style={styles.inputLayout}>
               <input
                 ref='searchString'
                 style={styles.textInput}
                 type='text'
-                placeholder={'Search for tweets'}
+                placeholder={'Enter keyword(s) to covfefy'}
               />
             </div>
             <div style={styles.inputLayout}>
