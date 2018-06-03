@@ -25,6 +25,7 @@ const textInput = {
 
 const submitInput = {
   width: '100%',
+  background: '#1da1f2',
 };
 
 export default {
