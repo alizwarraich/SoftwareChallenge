@@ -3,20 +3,8 @@ var User = require('./User');
 
 describe('(Model) User', () => {
 
-  it('should be invalid if username is empty or missing', (done) => {
-    const user = new User({
-      email: 'someEmail',
-      password: 'password',
-    });
-    user.validate((err) => {
-      expect(err.errors.username).to.exist;
-      done();
-    });
-  });
-
   it('should be invalid if email is empty or missing', (done) => {
     const user = new User({
-      username: 'someUsername',
       password: 'password',
     });
     user.validate((err) => {
@@ -27,7 +15,6 @@ describe('(Model) User', () => {
 
   it('should be invalid if password is empty or missing', (done) => {
     const user = new User({
-      username: 'someUsername',
       email: 'someEmail',
     });
     user.validate((err) => {

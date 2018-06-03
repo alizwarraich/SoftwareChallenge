@@ -1,3 +1,4 @@
+var bcrypt = require('bcrypt');
 var _ = require('lodash');
 var User = require('../../models/User');
 
@@ -8,9 +9,21 @@ var signup = function(req, res) {
     });
   }
 
-  const {username, email, password} = req.body;
+  const {email, password, confirmPassword} = req.body;
 
-  User.findOne({username: req.body.username}).exec()
+  if (password !== confirmPassword) {
+    return res.send({
+      error: 'password confirmation not match'
+    });
+  }
+
+  if (password.length < 5) {
+    return res.send({
+      error: 'password too short'
+    });
+  }
+
+  User.findOne({email: req.body.email}).exec()
     .then((user) => {
       if (!user) {
         return Promise.resolve();
@@ -18,7 +31,9 @@ var signup = function(req, res) {
       return Promise.reject({error: 'User already exist!'});
     })
     .then(() => {
-      const user = new User({username, email, password});
+      var saltRounds = 13;
+      var hashedPassword = bcrypt.hashSync(password, saltRounds);
+      const user = new User({email, password: hashedPassword});
 
       return new Promise((resolve, reject) => {
         user.validate((err) => {
@@ -31,7 +46,7 @@ var signup = function(req, res) {
     })
     .then((user) => {
       user.save();
-      res.status(201).send({}).end();
+      res.status(201).send(user).end();
     })
     .catch((error) => {
       res.status(400).send(error).end();
