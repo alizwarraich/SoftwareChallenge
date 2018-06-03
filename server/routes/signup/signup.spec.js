@@ -27,7 +27,7 @@ describe('(Route) signup', () => {
           });
         }
       };
-      sinon.stub(User, 'findOne').returns(mockFindOne);
+      findOne = sinon.stub(User, 'findOne').returns(mockFindOne);
     });
 
     it('should create new User and call validate', () => {
@@ -41,33 +41,41 @@ describe('(Route) signup', () => {
         error: ''
       }));
     });
+
+    after(() => {
+      findOne.restore();
+    });
   });
 
-  // describe('User existing', () => {
-  //   let findOne;
-  //
-  //   before(() => {
-  //     const mockFindOne = {
-  //       exec: function () {
-  //         return new Promise((resolve) => {
-  //           return resolve('someUser');
-  //         });
-  //       }
-  //     };
-  //     sinon.stub(User, 'findOne').returns(mockFindOne);
-  //   });
-  //
-  //   it('should send error', () => {
-  //     const username ='imranariffin', password = 'password', confirmPassword = 'password';
-  //     const req = {body: {username, password, confirmPassword}};
-  //     const res = {send: sinon.spy()};
-  //
-  //     signup(req, res);
-  //
-  //     expect(res.send.calledWith({
-  //       error: ''
-  //     }));
-  //   });
-  // });
+  describe('User existing', () => {
+    let findOne;
+
+    before(() => {
+      const mockFindOne = {
+        exec: function () {
+          return new Promise((resolve) => {
+            return resolve('someUser');
+          });
+        }
+      };
+      findOne = sinon.stub(User, 'findOne').returns(mockFindOne);
+    });
+
+    it('should send error', () => {
+      const username ='imranariffin', password = 'password', confirmPassword = 'password';
+      const req = {body: {username, password, confirmPassword}};
+      const res = {send: sinon.spy()};
+
+      signup(req, res);
+
+      expect(res.send.calledWith({
+        error: ''
+      }));
+    });
+
+    after(() => {
+      findOne.restore();
+    });
+  });
 });
 
