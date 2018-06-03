@@ -4,10 +4,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('./middlewares/cors');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var hello = require('./routes/hello');
 var tweets = require('./routes/tweets');
+var signup = require('./routes/signup');
 
 var app = express();
 
@@ -18,9 +20,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+mongoose.connect('mongodb://localhost:27017/covfefe');
+mongoose.set('debug', true);
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('~~~~~~~~~~~~~~~~~');
+  console.log('connected!');
+  console.log('~~~~~~~~~~~~~~~~~');
+});
+
 app.use('/', index);
 app.use('/hello', hello);
 app.use('/tweets', tweets);
+app.use('/signup', signup);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

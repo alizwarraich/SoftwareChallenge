@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var twitter = require('../utils/twitter');
+var twitter = require('../../utils/twitter');
 
 const fullCovfefier = (q) => (word) => word.toLowerCase() === q.toLowerCase() ? 'covfefe' : word;
 
