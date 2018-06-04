@@ -41,7 +41,7 @@ const login = (req, res) => {
       return Promise.resolve({token});
     })
     .then((response) => {
-      res.status(201).send(response).end();
+      res.status(200).send(response).end();
     })
     .catch((error) => {
       res.status(400).send(error).end();
