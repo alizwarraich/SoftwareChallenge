@@ -12,6 +12,7 @@ import Header from './components/Header';
 import Search from './components/Search';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import ProtectedRoute from './components/ProtectedRoute';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,7 +20,7 @@ ReactDOM.render(
       <div>
         <Header/>
         <Switch>
-          <Route
+          <ProtectedRoute
             path='/'
             exact
             component={Search}
