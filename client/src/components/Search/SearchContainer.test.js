@@ -1,4 +1,4 @@
-import {mapStateToProps} from './BodyContainer';
+import {mapStateToProps} from './SearchContainer';
 
 describe('(Container) BodyContainer', () => {
   describe('mapStateToProps', () => {

@@ -3,7 +3,7 @@ import styles from './styles';
 import Tweet from '../Tweet';
 import Loading from '../Loading';
 
-class Body extends React.Component {
+class Search extends React.Component {
 
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class Body extends React.Component {
                 ref='searchString'
                 style={styles.textInput}
                 type='text'
-                placeholder={'Enter keyword(s) to covfefy'}
+                placeholder='Enter keyword(s) to covfefy'
               />
             </div>
             <div style={styles.inputLayout}>
@@ -54,4 +54,4 @@ class Body extends React.Component {
   }
 }
 
-export default Body;
+export default Search;

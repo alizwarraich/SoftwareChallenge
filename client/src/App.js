@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Body from './components/Body';
+import Body from './components/Search';
 import Header from './components/Header';
 
 class App extends Component {
@@ -8,7 +8,12 @@ class App extends Component {
     return (
       <div className='App'>
         <Header/>
-        <Body/>
+        <Route
+          key={i}
+          path={path}
+          component={Body(component)}
+          exact={exact}
+        />
       </div>
     );
   }
