@@ -1,3 +1,5 @@
+import {saveToken, getToken} from '../auth';
+
 export const BASE_URL = 'http://127.0.0.1:8001';
 
 export const defaultConfig = {
@@ -11,6 +13,20 @@ export const defaultConfig = {
 export const canHaveBody = (config) => {
   return config && config.method
     && !(['GET', 'HEAD'].includes(config.method.toUpperCase()));
+};
+
+export const updateToken = (response) => {
+  if (
+    (response.url.indexOf('/login') !== -1
+    || response.url.indexOf('/signup') !== -1)
+    && response.data.token && response.data.token
+  ) {
+    saveToken(response.data.token);
+  }
+
+  console.log(getToken());
+
+  return response;
 };
 
 export const handleSuccessAndError = (response) => {
@@ -47,5 +63,6 @@ export default (endpoint, config) => {
   }
 
   return fetch(url, config)
+    .then(updateToken)
     .then(handleSuccessAndError);
 };

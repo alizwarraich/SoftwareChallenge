@@ -34,11 +34,6 @@ export default () => (next) => (action) => {
 
   return apiClient(endpoint, config)
     .then(response => {
-
-      console.log('@@@@@@@@@@@@@@@@@');
-      console.log(response);
-      console.log('@@@@@@@@@@@@@@@@@');
-
       next(createNormalAction(successActionType, response.data, []));
     })
     .catch(response => {

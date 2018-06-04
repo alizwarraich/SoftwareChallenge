@@ -5,6 +5,8 @@
   "proxy": "http://127.0.0.1:8001",
   "dependencies": {
     "history": "^4.7.2",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.22.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",

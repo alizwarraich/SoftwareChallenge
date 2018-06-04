@@ -48,7 +48,7 @@ class Search extends React.Component {
             !isLoading && tweets.map((tweet, i) => (
               <Tweet key={`tweet-${i}`} tweet={tweet}/>
             ))
-          ) || isLoading && <Loading/>}
+          ) || (isLoading && <Loading/>)}
         </div>
       </div>
     );
