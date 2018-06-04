@@ -6,7 +6,7 @@ const AUTH_TOKEN = 'jwt';
 const storage = window.localStorage;
 
 const saveToken = (token) => {
-  storage.saveItem(AUTH_TOKEN, token);
+  storage.setItem(AUTH_TOKEN, token);
 };
 
 const getToken = () => {

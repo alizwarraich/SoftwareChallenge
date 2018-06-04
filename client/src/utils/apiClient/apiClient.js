@@ -16,11 +16,7 @@ export const canHaveBody = (config) => {
 };
 
 export const updateToken = (response) => {
-  if (
-    (response.url.indexOf('/login') !== -1
-    || response.url.indexOf('/signup') !== -1)
-    && response.data.token && response.data.token
-  ) {
+  if (response.data && response.data.token) {
     auth.saveToken(response.data.token);
   }
 
@@ -63,6 +59,6 @@ export default (endpoint, config) => {
   }
 
   return fetch(url, config)
-    .then(updateToken)
-    .then(handleSuccessAndError);
+    .then(handleSuccessAndError)
+    .then(updateToken);
 };

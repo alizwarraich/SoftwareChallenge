@@ -32,17 +32,24 @@ export default () => (next) => (action) => {
 
   const config = {data, method};
 
+  console.log('API');
+
   return apiClient(endpoint, config)
     .then(response => {
-      next(createNormalAction(successActionType, response.data, []));
+      console.log('API_SUCCESS');
+      return next(createNormalAction(successActionType, response.data, []));
     })
     .catch(response => {
+      console.log('************8');
+      console.log('API_ERROR');
+      console.log(response);
+      console.log('************8');
       if (response.data && response.data.errors) {
         return next(createNormalAction(errorActionType, {}, response.data.errors));
       } else if (response.error) {
         return next(createNormalAction(errorActionType, {}, [response.error]));
       }
-      next(createNormalAction(
+      return next(createNormalAction(
         errorActionType,
         [
           'Error occurred but response does not provide specific error message',
