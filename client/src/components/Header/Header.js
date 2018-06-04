@@ -3,36 +3,45 @@ import styles from './styles';
 
 class Header extends React.Component {
   render() {
+
+    const {isAuthorized} = this.props;
+
     return (
       <div style={styles.layout}>
         <div style={styles.navItem}>
           <a
             style={styles.anchor}
             href='/'
-            // onClick={e => e.preventDefault()}
           >
             Tweet Covfefier
           </a>
         </div>
-        <div style={styles.navItemRight}>
+        {!isAuthorized() && <div style={styles.navItemRight}>
           <a
             style={styles.anchor}
             href='/login'
-            // onClick={e => e.preventDefault()}
           >
             Login
           </a>
-        </div>
-        <div style={styles.navItemRight}>
+        </div>}
+        {!isAuthorized() && <div style={styles.navItemRight}>
           <a
             style={styles.anchor}
             href='/signup'
-            // onClick={e => e.preventDefault()}
           >
             Signup
           </a>
+        </div>}
+        {isAuthorized() && <div style={styles.navItemRight}>
+          <a
+            style={styles.anchor}
+            href='/logout'
+            onClick={(e) => {e.preventDefault();console.log('logout!')}}
+          >
+            Logout
+          </a>
+        </div>}
         </div>
-      </div>
     );
   }
 }
