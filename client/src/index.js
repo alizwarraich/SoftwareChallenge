@@ -7,10 +7,11 @@ import {ConnectedRouter} from 'react-router-redux';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import store from './states/store';
+import {history} from './states/middlewares/history/history';
 import Header from './components/Header';
 import Search from './components/Search';
 import Login from './components/Login';
-import {history} from './states/middlewares/history/history';
+import Signup from './components/Signup';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -27,6 +28,11 @@ ReactDOM.render(
             path='/login'
             exact
             component={Login}
+          />
+          <Route
+            path='/signup'
+            exact
+            component={Signup}
           />
         </Switch>
       </div>

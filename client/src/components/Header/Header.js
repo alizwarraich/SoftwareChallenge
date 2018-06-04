@@ -8,8 +8,8 @@ class Header extends React.Component {
         <div style={styles.navItem}>
           <a
             style={styles.anchor}
-            href=''
-            onClick={e => e.preventDefault()}
+            href='/login'
+            // onClick={e => e.preventDefault()}
           >
             Login
           </a>
@@ -17,8 +17,8 @@ class Header extends React.Component {
         <div style={styles.navItem}>
           <a
             style={styles.anchor}
-            href=''
-            onClick={e => e.preventDefault()}
+            href='/signup'
+            // onClick={e => e.preventDefault()}
           >
             Signup
           </a>
