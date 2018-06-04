@@ -38,6 +38,7 @@ class Search extends React.Component {
                 style={styles.submitInput}
                 className='btn'
                 type='submit'
+                value='Search'
               />
             </div>
           </form>

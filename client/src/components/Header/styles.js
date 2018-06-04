@@ -6,6 +6,13 @@ const layout = {
 };
 
 const navItem = {
+  float: 'left',
+  height: '100%',
+  minWidth: '50px',
+  padding: '10px 10px 5px 10px',
+};
+
+const navItemRight = {
   float: 'right',
   height: '100%',
   minWidth: '50px',
@@ -19,5 +26,6 @@ const anchor = {
 export default {
   layout,
   navItem,
+  navItemRight,
   anchor,
 };

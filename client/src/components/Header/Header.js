@@ -8,13 +8,22 @@ class Header extends React.Component {
         <div style={styles.navItem}>
           <a
             style={styles.anchor}
+            href='/'
+            // onClick={e => e.preventDefault()}
+          >
+            Tweet Covfefier
+          </a>
+        </div>
+        <div style={styles.navItemRight}>
+          <a
+            style={styles.anchor}
             href='/login'
             // onClick={e => e.preventDefault()}
           >
             Login
           </a>
         </div>
-        <div style={styles.navItem}>
+        <div style={styles.navItemRight}>
           <a
             style={styles.anchor}
             href='/signup'
