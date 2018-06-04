@@ -1,9 +1,10 @@
 import {connect} from 'react-redux';
+import auth from '../../utils/auth';
 
 export const mapStateToProps = () => {
   return {
     isAuthorized: () => {
-      return true;
+      return !!auth.getToken();
     },
   };
 };

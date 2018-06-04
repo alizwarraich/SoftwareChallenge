@@ -41,8 +41,8 @@ describe('(reducer) tweets', () => {
     let action, state;
 
     beforeEach(() => {
-      state = {isLoading: true, data: ['someOldData'], errors: []};
-      action = {type: SEARCH_TWEETS_SUCCESS, data: ['someNewData']};
+      state = {isLoading: true, data: {statuses: ['someOldData']}, errors: []};
+      action = {type: SEARCH_TWEETS_SUCCESS, data: {statuses: ['someNewData']}};
     });
 
     it('should set isLoading to `false`', () => {
@@ -55,11 +55,11 @@ describe('(reducer) tweets', () => {
       expect(newState.errors).to.be.an('array').that.is.empty;
     });
 
-    it('should set data to be same as data from action', () => {
+    it('should map to statuses from data from action', () => {
       const newState = tweets(state, action);
       expect(newState.data)
         .to.be.an('array')
-        .that.is.deep.equal(action.data);
+        .that.is.deep.equal(action.data.statuses);
     });
   });
 

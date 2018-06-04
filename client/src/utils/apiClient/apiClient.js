@@ -1,4 +1,4 @@
-import {saveToken, getToken} from '../auth';
+import auth from '../auth';
 
 export const BASE_URL = 'http://127.0.0.1:8001';
 
@@ -21,10 +21,10 @@ export const updateToken = (response) => {
     || response.url.indexOf('/signup') !== -1)
     && response.data.token && response.data.token
   ) {
-    saveToken(response.data.token);
+    auth.saveToken(response.data.token);
   }
 
-  console.log(getToken());
+  console.log(auth.getToken());
 
   return response;
 };
