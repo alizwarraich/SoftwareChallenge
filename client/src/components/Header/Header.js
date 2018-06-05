@@ -4,7 +4,7 @@ import styles from './styles';
 class Header extends React.Component {
   render() {
 
-    const {isAuthorized} = this.props;
+    const {isAuthorized, logout} = this.props;
 
     return (
       <div style={styles.layout}>
@@ -36,7 +36,7 @@ class Header extends React.Component {
           <a
             style={styles.anchor}
             href='/logout'
-            onClick={(e) => {e.preventDefault();console.log('logout!')}}
+            onClick={(e) => {e.preventDefault(); logout();}}
           >
             Logout
           </a>
