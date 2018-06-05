@@ -1,5 +1,6 @@
 var expect = require('chai').expect;
 var SearchHistory = require('./SearchHistory');
+var User = require('../User');
 
 describe('(Model) SearchHistory', () => {
   describe('instance', () => {
@@ -9,10 +10,27 @@ describe('(Model) SearchHistory', () => {
     });
 
     it('should have `searchHistory` as required', () => {
-      const searchHistory = new SearchHistory();
-      searchHistory.validate((err) => {
-        expect(err).to.not.be.undefined;
+
+      const user = new User();
+
+      user.save((err) => {
+        const searchHistory = new SearchHistory({user: user._id});
+        searchHistory.validate((err) => {
+
+          expect(err.errors.searchString).to.be.an('object');
+          expect(err.errors.user).to.be.undefined;
+
+          User.deleteOne({_id: user._id});
+        });
       });
-    })
+    });
+
+    it('should have `user` as required', () => {
+      const searchHistory = new SearchHistory({searchString: 'covfefe'});
+      searchHistory.validate((err) => {
+        expect(err.errors.user).to.be.an('object');
+        expect(err.errors.searchString).to.be.undefined;
+      });
+    });
   });
 });
