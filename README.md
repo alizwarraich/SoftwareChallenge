@@ -106,4 +106,4 @@ Let us know how we can use it. You could either provide us with a zipped file co
 ## Bonus (optional):
 Add an “I’m feeling lucky button” that does a random search, but make sure that same result is not returned twice or that you don’t return a page that the user already viewed. Use the user stored history to do so. Since going through the history can potentially be costly, suggest and optionally implement optimization mechanism to avoid hitting the storage every time.
 
-I wish I have more time for this, damn it.
+I wish I have more time for this!
