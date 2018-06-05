@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = require('../routes/login/constants').JWT_SECRET;
+const JWT_SECRET = require('')
 
 const auth = (req, res, next) => {
 
@@ -26,7 +26,6 @@ const auth = (req, res, next) => {
 
   jwt.verify(token, JWT_SECRET, (err, decoded) => {
     if (err) {
-      console.log(err);
       return res.status(403).send({
         error: 'Not allowed: Token malformed'
       });

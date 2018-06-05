@@ -19,9 +19,6 @@ export const updateToken = (response) => {
   if (response.data && response.data.token) {
     auth.saveToken(response.data.token);
   }
-
-  console.log(auth.getToken());
-
   return response;
 };
 
@@ -50,6 +47,11 @@ export const handleSuccessAndError = (response) => {
 export default (endpoint, config) => {
   const url = `${BASE_URL}${endpoint}`;
   config = Object.assign(defaultConfig, config);
+
+  const token = auth.getToken();
+  if (!!token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
 
   delete config.body;
   if (canHaveBody(config)) {
