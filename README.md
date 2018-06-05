@@ -98,7 +98,10 @@ Let us know how we can use it. You could either provide us with a zipped file co
 `sh install_client.sh`
 
 ### To run
-`sh run_server_client.sh`
+
+`sh run_server.sh`
+
+`sh run_client.sh #open new terminal tab`
 
 ## Bonus (optional):
 Add an “I’m feeling lucky button” that does a random search, but make sure that same result is not returned twice or that you don’t return a page that the user already viewed. Use the user stored history to do so. Since going through the history can potentially be costly, suggest and optionally implement optimization mechanism to avoid hitting the storage every time.
