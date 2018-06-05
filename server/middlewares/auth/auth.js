@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = require('')
+const tokenUtils = require('../../utils/tokenUtils');
 
 const auth = (req, res, next) => {
 
@@ -24,7 +24,7 @@ const auth = (req, res, next) => {
 
   const [Bearer, token] = headerComponent;
 
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, tokenUtils.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(403).send({
         error: 'Not allowed: Token malformed'

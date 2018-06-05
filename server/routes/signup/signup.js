@@ -1,8 +1,7 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const User = require('../../models/User');
-const JWT_SECRET = require('../login/constants').JWT_SECRET;
+const tokenUtils = require('../../utils/tokenUtils');
 
 const signup = function(req, res) {
   if (!req.body || _.isEmpty(req.body)) {
@@ -51,14 +50,7 @@ const signup = function(req, res) {
     .then((user) => {
       user.save();
 
-      const options = {
-        expiresIn: 15 * 60 * 1000 // 15 minutes
-      };
-
-      const token = jwt.sign({
-        email: user.email,
-        password: new String(user.password),
-      }, JWT_SECRET, options);
+      const token = tokenUtils.signToken(user);
 
       return Promise.resolve({token});
     })
