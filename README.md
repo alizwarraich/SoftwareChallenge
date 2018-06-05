@@ -83,7 +83,7 @@ I tried to do TDD (I'm a big fan of TDD since reading Kent Beck's Xtreme Program
 Let us know how we can use it. You could either provide us with a zipped file containing your solution or a link to your Github repository containing one.
 
 ### Pre reqs:
-* Local mongodb
+* Local mongodb 3.6.5
 * npm 3.10.10
 * node 9.2.1
 * nodemon 1.11.0
