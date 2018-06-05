@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const User = require('../../models/User');
+const JWT_SECRET = require('./constants').JWT_SECRET;
 
 const login = (req, res) => {
   if (!req.body || _.isEmpty(req.body)) {
@@ -36,7 +37,7 @@ const login = (req, res) => {
       const token = jwt.sign({
         email: user.email,
         password: new String(user.password),
-      }, 'secret', options);
+      }, JWT_SECRET, options);
 
       return Promise.resolve({token});
     })

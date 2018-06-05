@@ -12,6 +12,7 @@ var hello = require('./routes/hello');
 var tweets = require('./routes/tweets');
 var signup = require('./routes/signup');
 var login = require('./routes/login');
+var auth = require('./middlewares/auth');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(auth);
 
 mongoose.connect('mongodb://localhost:27017/covfefe');
 var db = mongoose.connection;
