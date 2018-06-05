@@ -90,8 +90,11 @@ Let us know how we can use it. You could either provide us with a zipped file co
 
 ### To Install:
 `git clone https://github.com/imranariffin/SoftwareChallenge`
+
 `cd SoftwareChallenge`
+
 `sh install_server.sh`
+
 `sh install_client.sh`
 
 ### To run
