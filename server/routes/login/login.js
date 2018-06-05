@@ -35,6 +35,7 @@ const login = (req, res) => {
       };
 
       const token = jwt.sign({
+        _id: user._id,
         email: user.email,
         password: new String(user.password),
       }, JWT_SECRET, options);

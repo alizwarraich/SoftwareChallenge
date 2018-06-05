@@ -32,5 +32,22 @@ describe('(Model) SearchHistory', () => {
         expect(err.errors.searchString).to.be.undefined;
       });
     });
+
+    it('should be saved successfull', (done) => {
+      const user = new User();
+
+      user.save((err) => {
+        const searchHistory = new SearchHistory({
+          searchString: 'zzz',
+          user: user._id,
+        });
+
+        searchHistory.save();
+
+        User.deleteOne({_id: user._id});
+
+        done();
+      });
+    });
   });
 });
